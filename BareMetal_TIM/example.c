@@ -3,6 +3,7 @@
 #include "string.h"
 #include "PWM_Motor.h"
 /* Private includes ----------------------------------------------------------*/
+TIM_HandleTypeDef htim1;
 /* USER CODE BEGIN 0 */
 PWM_MOTOR *Motor1;
 /* USER CODE END 0 */
@@ -25,7 +26,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
     int pwm = 430;
-	  Motor1->Move_MOTOR(Motor1, pwm);
+    Motor1->Move_MOTOR(Motor1, pwm);
 
   }
   /* USER CODE END 3 */
