@@ -15,7 +15,6 @@ static inline void TIM_CH4(TIM_TypeDef *TIMx, uint32_t PWM);
 static void Rotate_MOTOR(PWM_MOTOR *self, int_fast32_t PWM);
 static void EnableDriver(PWM_MOTOR *self);
 static void DisableDriver(PWM_MOTOR *self);
-static void Interrupt_CB(PWM_MOTOR *self, void(*CB)(uint16_t));
 
 PWM_MOTOR *Init_Motor(TIM_HandleTypeDef *htim_A, TIM_HandleTypeDef *htim_B, uint32_t ch_A, uint32_t ch_B){
 	PWM_MOTOR *self;
@@ -68,11 +67,6 @@ static inline void TIM_CH3(TIM_TypeDef *TIMx, uint32_t PWM){
 }
 static inline void TIM_CH4(TIM_TypeDef *TIMx, uint32_t PWM){
 	TIMx->CCR4 = PWM;
-}
-
-static void Interrupt_CB(PWM_MOTOR *self, void(*CB)(uint16_t)){
-	CB = HAL_GPIO_EXTI_Callback;
-	CB(self->ch_A);
 }
 
 static void EnableDriver(PWM_MOTOR *self){
