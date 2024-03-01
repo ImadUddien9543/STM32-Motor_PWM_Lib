@@ -22,7 +22,6 @@ PWM_MOTOR *Init_Motor(TIM_HandleTypeDef *htim_A, TIM_HandleTypeDef *htim_B, uint
 	self->in_A = htim_A->Instance;
 	self->in_B = htim_B->Instance;
 	self->Move_MOTOR = Rotate_MOTOR;
-	self->IntCB = Interrupt_CB;
 
 	self->Enable_MOTOR = EnableDriver;
 	self->Disable_MOTOR = DisableDriver;
