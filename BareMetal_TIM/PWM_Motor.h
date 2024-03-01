@@ -19,9 +19,15 @@ typedef struct _PWM_MOTOR_t{
 	TIM_HandleTypeDef *htim_A, *htim_B;
 	TIM_TypeDef *in_A, *in_B;
 	uint32_t ch_A, ch_B;
-	void (*Set_CCR_A)(TIM_TypeDef*, int_fast32_t);
-	void (*Set_CCR_B)(TIM_TypeDef*, int_fast32_t);
+	GPIO_TypeDef *en_port;
+	uint16_t en_pin;
+
+	void (*Set_CCR_A)(TIM_TypeDef*, uint32_t);
+	void (*Set_CCR_B)(TIM_TypeDef*, uint32_t);
 	void (*Move_MOTOR)(struct _PWM_MOTOR_t*, int_fast32_t);
+	void (*Enable_MOTOR)(struct _PWM_MOTOR_t*);
+	void (*Disable_MOTOR)(struct _PWM_MOTOR_t*);
+	void (*IntCB)(struct _PWM_MOTOR_t *, void(*CB)(uint16_t));
 }PWM_MOTOR;
 
 extern PWM_MOTOR *Init_Motor(TIM_HandleTypeDef *htim_A, TIM_HandleTypeDef *htim_B, uint32_t ch_A, uint32_t ch_B);
