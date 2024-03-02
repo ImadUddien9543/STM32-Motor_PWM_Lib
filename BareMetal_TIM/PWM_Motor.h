@@ -17,7 +17,6 @@
 
 typedef struct _PWM_MOTOR_t{
 	TIM_HandleTypeDef *htim_A, *htim_B;
-	TIM_TypeDef *in_A, *in_B;
 	uint32_t ch_A, ch_B;
 	GPIO_TypeDef *en_port;
 	uint16_t en_pin;
